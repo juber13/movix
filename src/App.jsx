@@ -8,7 +8,7 @@ import { setMovieDay , setPopular , setTopRated , setMovieList , setUpcomings , 
 
 // components
 import Header from './components/header/Header'
-import { Home } from './components/home/home'
+import { Home } from './components/Hero/Home'
 import Movies from './components/Movies'
 
 function App() {
