@@ -3,6 +3,8 @@
     color: #ffff;
     height: calc(100vh - 60px);
     margin-bottom: 20px;
+    object-fit: contain;
+        
 }
 
 .container{
@@ -46,3 +48,4 @@ form{
     font-size: 1rem;
     text-transform: capitalize;
 }
+

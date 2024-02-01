@@ -5,17 +5,20 @@ import Movie from './Movie';
 
 const TopRated = () => {
     const movies = useSelector(store => store.movies);
-    const [isWeek, setIsWeek] = useState(false);
+    console.log(movies)
+    const [isWeek, setIsWeek] = useState(true);
+
+
     return (
         <div className='toprated-movie'>
            <div className='heading flex space-between'>
                <h3>Top Rated</h3>
-               <div className={`toggle-btn flex space-around ${isWeek ? 'active' : ""}`}>
-                  <div onClick={() => setIsWeek(false)}>Day</div>
-                  <div onClick={() => setIsWeek(true)}>Week</div>
+               <div className={`toggle-btn flex space-around ${isWeek ? '' : "active"}`}>
+                  <div onClick={() => setIsWeek(true)}>Movies</div>
+                  <div onClick={() => setIsWeek(false)}>Tv Shows</div>
                </div>
            </div>
-           <Movie movies={movies.topRated} />
+           <Movie movies={isWeek ? movies.topRatedMovies : movies.topRatedTvShow} />
         </div>
     )
 }

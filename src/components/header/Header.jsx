@@ -1,6 +1,6 @@
 import { IoSearchOutline } from "react-icons/io5";
-
-import './index.css'
+import { Link } from "react-router-dom";
+import './header.css'
 
 const Header = () => {
     return (
@@ -8,14 +8,16 @@ const Header = () => {
             <div className="header-container flex space-between">
 
                 <div className="left">
-                    <img src="https://moviex-olive.vercel.app/assets/movix-logo-d720c325.svg" alt="movix-logo" />
+                    <Link to={"/"}>
+                      <img src="https://moviex-olive.vercel.app/assets/movix-logo-d720c325.svg" alt="movix-logo" />
+                    </Link>
                 </div>
 
                 <div className="right">
                     <ul className="flex item-center gap">
-                        <li><a href="#">Movies</a></li>
-                        <li><a href="#">Tv Shows</a></li>
-                        <li><a href="#"><IoSearchOutline /></a></li>
+                        <li><Link to={"/explore/movie"}>Movies</Link></li>
+                        <li><Link to={"/explore/show"}>Show</Link></li>
+                        <li><IoSearchOutline /></li>
                     </ul>
                 </div>
             </div>

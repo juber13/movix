@@ -9,3 +9,11 @@
     width: 80%;
     margin: 0 auto;
 }
+
+
+li:last-child{
+    font-size: 20px;
+    color: #fff;
+    position: relative;
+    top: 5px;
+}

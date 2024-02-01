@@ -8,19 +8,22 @@
     max-width: 100%;
     display: flex;
     margin: 20px auto;
-    gap: 20px;
     overflow: hidden;
     align-items: center;
     position: relative;
 }
 
-.movies .movie{
-    width: 250px;
+.movies .movie , .movies-list .movie{
+    width: 200px;
     position: relative;
 }
 
 .container{
     width: 80%;
+}
+
+.gap{
+    gap: 15px !important;
 }
 
 
@@ -44,7 +47,7 @@
     border: 2px solid #ddd;
     padding: 1rem;
     position: absolute;
-    bottom: 15%;
+    bottom: 12%;
     color: #000;
     left: 3%;
     z-index: 1;

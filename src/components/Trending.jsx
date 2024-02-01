@@ -5,19 +5,19 @@ import './movie.css'
 
 const Trending = () => {
   const  movies  = useSelector(store => store.movies);
-  const [isWeek, setIsWeek] = useState(false);
+  const [isWeek, setIsWeek] = useState(true);
 
 
   return (
     <div className='trending-movie'>
            <div className='heading flex space-between'>
                <h3>Trending</h3>
-               <div className={`toggle-btn flex space-around ${isWeek ? 'active' : ""}`}>
-                  <div onClick={() => setIsWeek(false)}>Day</div>
-                  <div onClick={() => setIsWeek(true)}>Week</div>
+               <div className={`toggle-btn flex space-around ${isWeek ? "" : "active"}`}>
+                  <div onClick={() => setIsWeek(true)}>Day</div>
+                  <div onClick={() => setIsWeek(false)}>Week</div>
                </div>
            </div>
-           <Movie movies={movies.trending} />
+           <Movie movies={isWeek ? movies.movieDay : movies.movieWeek} />
         </div>
   )
 }
