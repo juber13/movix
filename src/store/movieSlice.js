@@ -8,6 +8,8 @@ const movies = {
     topRatedMovies: [],
     topRatedTvShow: [],
     moviesList: [],
+    showList: [],
+
 }
 
 export const movieSlice = createSlice({
@@ -21,10 +23,11 @@ export const movieSlice = createSlice({
         setTopRatedMovies: (state, action) => { state.topRatedMovies = action.payload.results },
         setTopRatedTvShow: (state, action) => { state.topRatedTvShow = action.payload.results },
         setMoviesList: (state, action) => { state.moviesList = action.payload.genres },
+        setShowList: (state, action) => { state.showList = action.payload.genres },
         // setTrending: (state , action) => { state.trending = action.payload.results },
     }
 })
 
-export const { setMovieDay, setMovieWeek, setPopularMovies, setPopularTvShows, setTopRatedMovies, setTopRatedTvShow, setMoviesList, setPage }
+export const { setMovieDay, setMovieWeek, setPopularMovies, setPopularTvShows, setTopRatedMovies, setTopRatedTvShow, setMoviesList , setShowList }
     = movieSlice.actions;
 export default movieSlice.reducer;

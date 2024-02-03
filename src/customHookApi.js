@@ -1,8 +1,7 @@
 import axios from "axios"
 
-const customHookApi = async (url, params , setLoading) => {
+const customHookApi = async (url, params) => {
   try {
-    setLoading(true);
     const response = await axios(url, {
       params,
       headers: {
@@ -10,7 +9,6 @@ const customHookApi = async (url, params , setLoading) => {
       }
 
     });
-    setLoading(false);
     return response.data;
   } catch (err) {
     console.log(err);

@@ -35,7 +35,7 @@ const ExploreMovies = ({ loading }) => {
                     </div>
                 </div>
 
-                <div className="item-start flex-wrap movies gaps">
+                <div className="item-start grid movies gaps">
                     {movies.popularMovies.map((movie, index) => {
                         const { poster_path, original_title, release_date, id, vote_average, name, first_air_date } = movie;
                         return (

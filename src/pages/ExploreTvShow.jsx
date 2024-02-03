@@ -12,12 +12,15 @@ const ExploreTvShow = ({ loading }) => {
             <div className='container'>
                 <div className='heading flex space-between'>
                     <div className="left">
-                        <h4>Explore Movies</h4>
+                        <h4>Explore Show</h4>
                     </div>
 
                     <div className="select-options flex gap">
                         <select name="" id="options">
-                            {movies.moviesList.map((list, index) => <option value={list.name} key={index}>{list.name}</option>)}
+                            {movies.showList.map((list, index) => <option value={list.name} key={index}>
+                                <input type='checkbox' />
+                                {list.name}
+                            </option>)}
                         </select>
                         <select name="" id="options">
                             <option value="Popularity Decending">Popularity Decending</option>
@@ -31,7 +34,7 @@ const ExploreTvShow = ({ loading }) => {
                     </div>
                 </div>
 
-                <div className="item-start flex-wrap movies gaps">
+                <div className="item-start grid movies gaps">
                     {movies.popularTvShows.map((movie, index) => {
                         const { poster_path, original_title, release_date, id, vote_average, name, first_air_date } = movie;
                         return (

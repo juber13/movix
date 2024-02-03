@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import './App.css'
 import { useDispatch } from 'react-redux'
 import customHookApi from './customHookApi'
-import { setMovieDay, setMovieWeek, setPopularMovies, setPopularTvShows, setTopRatedMovies, setTopRatedTvShow, setMoviesList } from './store/movieSlice'
+import { setMovieDay, setMovieWeek, setPopularMovies, setPopularTvShows, setTopRatedMovies, setTopRatedTvShow, setMoviesList, setShowList } from './store/movieSlice'
 
-import { Routes, Route, useAsyncError } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 // components
 import Header from './components/header/Header'
@@ -14,6 +14,7 @@ import { Home } from './components/Hero/Home'
 import Movies from './components/Movies'
 import ExploreMovies from './pages/ExploreMovies'
 import ExploreTvShow from './pages/ExploreTvShow'
+import MovieDetails from './components/MovieDetails'
 
 function App() {
   const disPatch = useDispatch();
@@ -31,17 +32,13 @@ function App() {
 
   const fetchData = async (url, param) => {
     try {
-      setLoaing(true);
       const res = await fetch(url, param);
       const data = await res.json();
-      setLoaing(false);
       return data;
     } catch (err) {
       console.log(err);
     }
   }
-
-
 
   const handleScroll = async () => {
     try {
@@ -57,8 +54,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
 
+  useEffect(() => {
     fetchData(`https://api.themoviedb.org/3/discover/tv?page=${number}`, options).then(data => {
       disPatch(setPopularTvShows(data));
     })
@@ -66,10 +63,21 @@ function App() {
     fetchData(`https://api.themoviedb.org/3/discover/movie?page=${number}`, options).then(data => {
       disPatch(setPopularMovies(data));
     })
+  }, [number])
 
-    if (movies.moviesList.length < 0) {
+  useEffect(() => {
+
+
+
+    if (movies.moviesList.length <= 0) {
       customHookApi("https://api.themoviedb.org/3/genre/movie/list", {})
         .then(data => disPatch(setMoviesList(data)))
+        .catch(err => console.log(err));
+    }
+
+    if (movies.showList.length <= 0) {
+      customHookApi("https://api.themoviedb.org/3/genre/tv/list", {})
+        .then(data => disPatch(setShowList(data)))
         .catch(err => console.log(err));
     }
 
@@ -112,7 +120,7 @@ function App() {
         .catch(err => console.log(err));
     }
 
-  }, [number])
+  }, [])
 
 
 
@@ -121,8 +129,9 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/explore/movie' element={<ExploreMovies loading={loading}/>} />
-        <Route path='/explore/show' element={<ExploreTvShow  loading={loading}/>} />
+        <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route path='/explore/movie' element={<ExploreMovies loading={loading} />} />
+        <Route path='/explore/show' element={<ExploreTvShow loading={loading} />} />
       </Routes>
     </div>
   )
